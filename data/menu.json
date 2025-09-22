@@ -1,0 +1,208 @@
+{
+  "name": "Tazzi Pizza",
+  "sections": [
+        {
+          "id": "pizza",
+          "label": { "de": "Pizza", "en": "Pizza" },
+          "items": [
+            {
+              "name": "Truffadella",
+              "price": 18,
+              "popular": true, 
+              "description": {
+                "de": "Tomatensauce | Trüffelmortadella | Stracciatellakäse | Trüffelöl | schwarzer Pfeffer",
+                "en": "Tomato sauce | Truffle mortadella | Stracciatella cheese | Truffle oil | black pepper"
+              },
+              "info": ["schwein"],
+              "extras": [
+                { "label": { "de": "Knoblauch", "en": "Garlic" }, "price": 1 },
+                { "label": { "de": "Kapern", "en": "Capers" }, "price": 1 },
+                { "label": { "de": "Zwiebeln", "en": "Onions" }, "price": 1 },
+                { "label": { "de": "Champignons", "en": "Mushrooms" }, "price": 2 },
+                { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
+                { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
+                { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
+                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
+                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
+                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
+                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
+                { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
+              ],
+              "allergene": ["laktose", "gluten"]
+            },
+            {
+              "name": "Magic Mushroom",
+              "price": 17.5,
+              "description": {
+                "de": "Bianca | Hafersahne | geschmorte Pilzmischung | Veta Käse | Rauchmandeln | frischer Thymian | Olivenöl",
+                "en": "Bianca | Oat cream | braised mushroom mix | Veta cheese | smoked almonds | fresh thyme | olive oil"
+              },
+              "badges": ["vegan", "laktosefrei"],
+              "info": ["laktosefrei"],
+              "extras": [
+                { "label": { "de": "Knoblauch", "en": "Garlic" }, "price": 1 },
+                { "label": { "de": "Kapern", "en": "Capers" }, "price": 1 },
+                { "label": { "de": "Zwiebeln", "en": "Onions" }, "price": 1 },
+                { "label": { "de": "Champignons", "en": "Mushrooms" }, "price": 2 },
+                { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
+                { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
+                { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
+                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
+                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
+                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
+                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
+                { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
+              ],
+              "allergene": ["nuesse", "gluten"]
+            },
+            {
+              "name": "Buffalina",
+              "price": 15,
+              "description": {
+                "de": "Tomatensauce | Büffelmozzarella | Olivenöl | Basilikum",
+                "en": "Tomato sauce | Buffalo mozzarella | Olive oil | Basil"
+              },
+              "badges": ["vegetarisch"],
+              "info": ["vegan"],
+              "extras": [
+                { "label": { "de": "Knoblauch", "en": "Garlic" }, "price": 1 },
+                { "label": { "de": "Kapern", "en": "Capers" }, "price": 1 },
+                { "label": { "de": "Zwiebeln", "en": "Onions" }, "price": 1 },
+                { "label": { "de": "Champignons", "en": "Mushrooms" }, "price": 2 },
+                { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
+                { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
+                { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
+                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
+                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
+                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
+                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
+                { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
+              ],
+              "allergene": ["laktose", "gluten"]
+            },
+            {
+              "name": "Norma",
+              "price": 16.5,
+              "popular": true,
+              "description": {
+                "de": "Tomatensauce | Fior di latte | frittierte Aubergine | Ricotta Salata | Olivenöl | Basilikum",
+                "en": "Tomato sauce | Fior di latte | fried eggplant | Ricotta Salata | Olive oil | Basil"
+              },
+              "badges": ["vegetarisch"],
+              "info": ["vegan"],
+              "Kalorien": 880,
+              "extras": [
+                { "label": { "de": "Knoblauch", "en": "Garlic" }, "price": 1 },
+                { "label": { "de": "Kapern", "en": "Capers" }, "price": 1 },
+                { "label": { "de": "Zwiebeln", "en": "Onions" }, "price": 1 },
+                { "label": { "de": "Champignons", "en": "Mushrooms" }, "price": 2 },
+                { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
+                { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
+                { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
+                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
+                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
+                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
+                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
+                { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
+              ],
+              "allergene": ["laktose", "gluten"]
+            }
+          ]
+        },
+        {
+          "id": "salate",
+          "label": { "de": "Salate", "en": "Salads" },
+          "items": [
+            {
+              "name":"Salat Verde",
+              "description": {"de":"Mischsalat | Tomaten | Hausdressing | Kernemix", "en": "Mixed salad | Tomatoes | House dressing | Seed mix"},
+              "price": 13, 
+              "badges": ["vegan"]
+            },
+            {
+              "name": "La Merano Salat",
+              "description": {"de":"Mischsalat | Tomaten | Rote Zwiebeln | Oliven | Kernemix | Büffelmozzarella | Thunfisch | Hausdressing", "en":"Mixed salad | Tomatoes | Red onions | Olives | Seed mix | Buffalo mozzarella | Tuna | House dressing" },
+              "price": 14.5,
+              "info": ["fisch", "vegan", "vegetarisch"],
+              "allergene": ["laktose"]
+            },
+                        {
+              "name": { "de": "Beilagensalat", "en": "Side Salad" },
+              "price": 7.5,
+              "badges": ["vegetarisch"],
+              "allergene": ["laktose"],
+              "description": {
+                "de": "Cherrytomaten | Zwiebeln | Oliven | Gurken | Mozzarelline | Hausdressing",
+                "en": "Cherry tomatoes | Onions | Olives | Cucumbers | Mozzarelline | House dressing"
+              }
+            }
+          ]
+        },
+        {
+          "id": "small plates",
+          "label": { "de": "Kleine Gerichte", "en": "Small Plates" },
+          "items": [
+            {
+              "name": "Orange Fennel",
+              "price": 7,
+              "badges": ["vegan"],
+              "description": {
+                "de": "gegrillter Fenchel | weiße Bohnen Hummus | Orangenreduktion",
+                "en": "grilled fennel | white bean hummus | orange reduction"
+              }
+            },
+            {
+              "name": "Marinated Olives",
+              "price": 5,
+              "description": {
+                "de": "Grüne Oliven | Öl | Gewürze",
+                "en": "Green olives | Oil | Spices"
+              },
+              "badges": ["vegan"]
+            },
+            {
+              "name": "Sicilian Meatballs",
+              "price": 8.5,
+              "badges":["halal"],
+              "description": {
+                "de": "Hackbällchen aus Rind | Tomatensauce | Basilikum | Parmesan",
+                "en": "Beef meatballs | Tomato sauce | Basil | Parmesan"
+              },
+              "info": ["rind", "halal"],
+              "allergene": ["laktose"]
+            }
+          ]
+        },
+        {
+          "id": "softdrinks",
+          "label": { "de": "Softdrinks", "en": "Soft Drinks" },
+          "icon": "alkoholfrei",
+          "items": [
+            { "name": "Fritz Cola", "price": 3.5 },
+            { "name": "Fritz Spritz Apfelschorle", "price": 3.5 },
+            { "name": "Fritz Cola Zero", "price": 3.5 },
+            { "name": "Tafelwasser Still 0,7", "price": 5 },
+            { "name": "Tafelwasser Spritzig 0,7", "price": 5 }
+          ]
+        },
+        {
+          "id": "wein",
+          "label": { "de": "Wein", "en": "Wine" },
+          "icon": "wein",
+          "items": [
+            { "name": {"de": "Glas Pinot Grigio", "en": "Glass Pinot Grigio"}, "price": 6.5 },
+            { "name": {"de": "Glas Hauswein Rot", "en": "Glass Hauswein red"}, "price": 6.5 }
+          ]
+        },
+        {
+          "id": "bier",
+          "label": { "de": "Bier", "en": "Beer" },
+          "icon": "alkohol",
+          "items": [
+            { "name": "Alsterwasser 0,5", "price": 5 },
+            { "name": "Pils 0,5", "price": 5 }
+          ]
+        }
+      ]
+    }
+
