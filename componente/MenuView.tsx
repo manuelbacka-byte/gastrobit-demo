@@ -8,7 +8,13 @@ import { BADGE_META } from "./badges/meta";
 import SettingsMenu from "./SettingsMenu";
 import { useI18n } from "./i18n/I18nProvider";
 import BackToTopButton from "./BackToTopButton";
+import { Bebas_Neue } from "next/font/google";
 
+const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 
 type Localized = string | { de: string; en: string };
@@ -282,15 +288,16 @@ const centerActiveTab = (id: string) => {
               </div>
             </div>
 
-
-          {/* Kopf: Name + Settings rechts */}
-          <div className="mt-4 mb-2 flex items-center justify-between">
-            <h1 className="text-3xl font-black font-[Bebas_neue]" style={{ color: "var(--text-primary)" }}>
-              {asText(menu.name)}
-            </h1>
-            <SettingsMenu iconSrc="/icons/settings.svg"/>
-          </div>
-
+              {/* Kopf: Name + Settings rechts */}
+              <div className="mt-4 mb-2 flex items-center justify-between">
+                <h1
+                  className={`${bebas.className} text-3xl font-normal`}
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {asText(menu.name)}
+                </h1>
+                <SettingsMenu iconSrc="/icons/settings.svg" />
+              </div>
 
         {/* Sticky Tabs */}
         <div className="sticky top-0 z-50 bg-[var(--card-bg)]">
@@ -343,7 +350,7 @@ const centerActiveTab = (id: string) => {
                   return meta ? (
                     <span
                       aria-hidden
-                      className="inline-block shrink-0 relative top-[-2px]"
+                      className="inline-block shrink-0 relative"
                       style={{
                         width: 18,
                         height: 18,
