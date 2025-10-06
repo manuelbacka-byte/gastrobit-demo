@@ -210,7 +210,7 @@ const infoLinesCustom =
                 <p className="text-sm text-[var(--text-secondary)]">{dish.Kalorien} kcal</p>
               ) : null}
             </div>
-            <div className="text-base font-semibold text-[var(--text-primary)]">
+            <div className="text-base font-semibold text-[var(--text-primary)] tabular-nums">
               {formatPrice(dish.price)}
             </div>
           </div>
@@ -249,7 +249,7 @@ const infoLinesCustom =
                         <span className="inline-block w-1 h-1" />
                         <span className="text-sm text-[var(--text-primary)]">{asText(ex.label)}</span>
                     </div>
-                    <span className="text-sm font-medium text-[var(--text-primary)]">
+                    <span className="text-sm font-medium text-[var(--text-primary)] tabular-nums">
                         {formatPrice(ex.price)}
                     </span>
                     </div>

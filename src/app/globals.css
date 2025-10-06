@@ -1,76 +1,68 @@
-
 @import "tailwindcss";
 
-
 :root {
-  --background: #ffffff;   /* Haupt-Hintergrund */
-  --foreground: #171717;   /* Standard-Textfarbe */
-  --accent: #ab670fed;     /* Akzentfarbe für Buttons, Tabs, Badges */
+  --background: #ffffff;
+  --foreground: #171717;
 
-  --card-bg: #ffffff;      /* Panels, Sheets, Karten */
-  --text-primary: #171717; /* Überschriften, Haupttext */
-  --text-secondary: #6b7280; /* Beschreibungen */
-  --border: #e5e7eb;       /* Divider / Ränder */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card-bg: #111111;
-    --text-primary: #ededed;
-    --text-secondary: #9ca3af;
-    --border: #27272a;
-    --accent: #ab670fed; /* kann gleich bleiben oder eigene Dark-Variante */
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-
-}
-:root{
-  --icon: #000000;           /* Icon Grundfarbe (z.B. gray-800) */
-  --kreis: #f1f1f1;
-}
-
-/* Dark Mode Overrides */
-@media (prefers-color-scheme: dark) {
-  :root{
-    --icon: #f1f1f1;         /* z.B. gray-200 */
-    --kreis: #101010;
-  }
-}
-/* Manuelles Theme via data-theme="dark" auf <html> */
-:root {
   --text-primary: #171717;
+  --text-secondary: #6b7280;
+
   --card: #ffffff;
-  --border: #e5e7eb;
-  --icon: #171717; 
+  --card-bg: #ffffff;
+
+  --border: #d2d5db; 
+
+  --icon: #171717;
   --kreis: #f1f1f1;
-  --card-bg: #ffffff;        
+
+  --accent: #ab670fed;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: #181818;
+    --foreground: #ffffff;
+
+    --text-primary: #ffffff;
+    --text-secondary: #e3e3e3;
+
+    --card: #181818;
+    --card-bg: #181818;
+
+
+    --border: #ffffff;
+
+    --icon: #ffffff;
+    --kreis: #343434;
+
+    --accent: #ff9100ed;
+  }
 }
 
 html[data-theme="dark"] {
   --background: #181818;
   --foreground: #ffffff;
+
   --text-primary: #ffffff;
   --text-secondary: #e3e3e3;
+
   --card: #181818;
-  --border: #ffffff;
+  --card-bg: #181818;
+
+  --border: #ffffff; 
+
   --icon: #ffffff;
   --kreis: #343434;
-  --card-bg: #181818;  
-  --accent:  #ff9100ed; 
+
+  --accent: #ff9100ed;
 }
 
 
-/* Scrollbar verstecken bei Tabs */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+body {
+  background: var(--background);
+  color: var(--foreground);
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

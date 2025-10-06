@@ -272,10 +272,10 @@ const centerActiveTab = (id: string) => {
 
   return (
     <div className="bg-[var(--background)]">
-      <main className="max-w-screen-md mx-auto font-sans antialiased tracking-normal">
+      <main className="max-w-screen-md mx-auto antialiased tracking-normal">
 
         {/* Hero */}
-            <div className="w-full overflow-hidden rounded-md bg-[var(--card-bg)]">
+            <div className="w-full overflow-hidden rounded-md bg-[var(--card-bg)] ">
               <div className="relative w-full h-[210px]">
                 <Image
                   src="/hero.png"
@@ -289,7 +289,7 @@ const centerActiveTab = (id: string) => {
             </div>
 
               {/* Kopf: Name + Settings rechts */}
-              <div className="mt-4 mb-2 flex items-center justify-between">
+              <div className="mt-4 mb-4 flex items-center justify-between">
                 <h1
                   className={`${bebas.className} text-3xl font-normal`}
                   style={{ color: "var(--text-primary)" }}
@@ -301,7 +301,7 @@ const centerActiveTab = (id: string) => {
 
         {/* Sticky Tabs */}
         <div className="sticky top-0 z-50 bg-[var(--card-bg)]">
-          <div className="flex items-center border-[var(--border)] py-2">
+          <div className="flex items-center">
             <div
               ref={tabsContainerRef}
               className="flex gap-2 overflow-x-auto no-scrollbar w-full"
@@ -341,16 +341,17 @@ const centerActiveTab = (id: string) => {
             ref={(el: HTMLElement | null) => {
               sectionRefs.current[cat.id] = el;
             }}
-            className="mb-12 scroll-mt-24"
+            className="mb-12 md:mb-14 scroll-mt-24"
           >
-              <h2 className="flex items-center gap-2 text-xl leading-7 font-bold text-[var(--text-primary)] mt-2 mb-3">
-                <span>{asText(cat.label)}</span>
+              <h2 className="flex items-center gap-2 text-xl  leading-[1.15] font-bold text-[var(--text-primary)] mt-4 md:mt-5 mb-2 md:mb-3">
+                <span> {asText(cat.label)}</span>
                 {(() => {
                   const meta = getCategoryIcon(cat.icon);
                   return meta ? (
                     <span
                       aria-hidden
                       className="inline-block shrink-0 relative"
+
                       style={{
                         width: 18,
                         height: 18,
@@ -370,7 +371,7 @@ const centerActiveTab = (id: string) => {
                 <li
                   key={item.code ?? `${asText(item.name)}-${item.price}`} 
                   onClick={() => openDishSheet(item)}
-                  className={`pb-4 border-b-2 border-[var(--border)] ${item.code ? "mb-2" : "mb-2"} cursor-pointer active:opacity-70`}
+                  className={`pb-4 md:pb-5 border-b border-[var(--border)] ${item.code ? "mb-1" : "mb-2"} cursor-pointer active:opacity-70`}
                 >
                   {(() => {
                     const hasBadges = Array.isArray(item.badges) && item.badges.length > 0;
@@ -427,7 +428,7 @@ const centerActiveTab = (id: string) => {
     })()}
 
                   {/* Preis + Beschreibung */}
-                    <p className="mt-1 text-sm font-medium text-[var(--text-primary)]">
+                    <p className="mt-1 text-sm font-medium text-[var(--text-primary)] tabular-nums">
                       {formatPrice(item.price)}
                     </p>
                   {item.description && (
@@ -442,7 +443,6 @@ const centerActiveTab = (id: string) => {
         ))}
       </main>
 
-      <DishSheet dish={selectedDish} open={isSheetOpen} onClose={closeDishSheet} />
       <DishSheet dish={selectedDish} open={isSheetOpen} onClose={closeDishSheet} />
       <BackToTopButton />
     </div>

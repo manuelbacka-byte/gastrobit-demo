@@ -4,32 +4,59 @@ import { useI18n } from "./i18n/I18nProvider";
 import { DEFAULT_DARK, RESPECT_USER_CHOICE } from "../config/theme";
 
 type Lang = "de" | "en";
+type ThemeMode = "system" | "light" | "dark";
 
 export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { iconSrc?: string }) {
   const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
-  const [isDark, setIsDark] = useState<boolean>(DEFAULT_DARK);
+
+  // NEU: Theme-Mode + System-Pref
+  const [mode, setMode] = useState<ThemeMode>("system");
+  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(false);
 
   const btnRef = useRef<HTMLButtonElement | null>(null);
   const popRef = useRef<HTMLDivElement | null>(null);
+  const mqlRef = useRef<MediaQueryList | null>(null);
 
-  // Init: Sprache + Theme (User-Wahl > Default, wenn erlaubt)
+  // Effektiv dunkel? (für UI-Toggle)
+  const isDarkEffective = mode === "dark" || (mode === "system" && systemPrefersDark);
+
+  // --- Init: Sprache + Theme (User-Wahl > System; System nur solange keine User-Wahl vorlag)
   useEffect(() => {
-    // Sprache aus localStorage (validiert), sonst "de"
+    // Sprache
     const savedLang = (typeof window !== "undefined" ? window.localStorage.getItem("lang") : null) as Lang | null;
-    const validLang: Lang = savedLang === "de" || savedLang === "en" ? savedLang : "de";
-    setLang(validLang);
+    setLang(savedLang === "de" || savedLang === "en" ? savedLang : "de");
 
-    // Theme bestimmen
-    let startDark: boolean = DEFAULT_DARK;
-    if (RESPECT_USER_CHOICE && typeof window !== "undefined") {
-      const savedTheme = window.localStorage.getItem("theme") as "dark" | "light" | null;
-      if (savedTheme) startDark = savedTheme === "dark";
+    // System-Dark beobachten (für UI)
+    if (typeof window !== "undefined" && "matchMedia" in window) {
+      mqlRef.current = window.matchMedia("(prefers-color-scheme: dark)");
+      const update = () => setSystemPrefersDark(mqlRef.current!.matches);
+      update();
+      mqlRef.current.addEventListener("change", update);
+      return () => mqlRef.current?.removeEventListener("change", update);
+    } else {
+      setSystemPrefersDark(DEFAULT_DARK); // Fallback
     }
-    setIsDark(startDark);
-    if (startDark) document.documentElement.setAttribute("data-theme", "dark");
-    else document.documentElement.removeAttribute("data-theme");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setLang]);
+
+  useEffect(() => {
+    // Theme aus localStorage lesen
+    if (typeof window === "undefined") return;
+
+    let saved = RESPECT_USER_CHOICE ? (localStorage.getItem("theme") as ThemeMode | null) : null;
+
+    // Validieren
+    if (saved !== "light" && saved !== "dark" && saved !== "system") {
+      saved = "system";
+    }
+
+    // Mode anwenden
+    setMode(saved);
+
+    const root = document.documentElement;
+    if (saved === "light") root.setAttribute("data-theme", "light");
+    else if (saved === "dark") root.setAttribute("data-theme", "dark");
+    else root.removeAttribute("data-theme"); // system -> Media Query entscheidet
   }, []);
 
   // ESC schließt
@@ -40,15 +67,21 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  // --- WICHTIG: Toggle erzwingt IMMER das Gegenteil des aktuell wirksamen Zustands
+  // (Auch wenn "dunkel" nur durch's System kommt, schalten wir auf erzwungen "hell")
   function toggleTheme() {
-    const next = !isDark;
-    setIsDark(next);
-    if (next) {
-      document.documentElement.setAttribute("data-theme", "dark");
-      if (RESPECT_USER_CHOICE && typeof window !== "undefined") localStorage.setItem("theme", "dark");
+    const root = document.documentElement;
+
+    // aktuell effektiv dunkel -> nächstes = FORCE LIGHT
+    if (isDarkEffective) {
+      setMode("light");
+      root.setAttribute("data-theme", "light");
+      if (RESPECT_USER_CHOICE) localStorage.setItem("theme", "light");
     } else {
-      document.documentElement.removeAttribute("data-theme");
-      if (RESPECT_USER_CHOICE && typeof window !== "undefined") localStorage.setItem("theme", "light");
+      // aktuell effektiv hell -> nächstes = FORCE DARK
+      setMode("dark");
+      root.setAttribute("data-theme", "dark");
+      if (RESPECT_USER_CHOICE) localStorage.setItem("theme", "dark");
     }
   }
 
@@ -70,11 +103,12 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
         aria-expanded={open}
         className="inline-flex items-center justify-center rounded-md border"
         style={{
-          height: 30,
-          width: 30,
+          height: 28,
+          width: 28,
           background: "var(--card)",
           borderColor: "var(--border)",
           color: "var(--text-primary)",
+          marginBottom: 2,
         }}
         title={t("appearance")}
       >
@@ -82,8 +116,8 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
           aria-hidden
           className="block"
           style={{
-            width: 16,
-            height: 16,
+            width: 14,
+            height: 14,
             backgroundColor: "var(--icon)",
             WebkitMask: `url(${iconSrc}) center / contain no-repeat`,
             mask: `url(${iconSrc}) center / contain no-repeat`,
@@ -91,10 +125,8 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
         />
       </button>
 
-      {/* Backdrop */}
       {open && <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-hidden />}
 
-      {/* Popover */}
       {open && (
         <div
           ref={popRef}
@@ -143,12 +175,12 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
               <span>{t("darkMode")}</span>
               <span
                 className={`inline-flex h-5 w-9 items-center rounded-full px-0.5 transition-all ${
-                  isDark ? "[background:var(--accent)]" : "bg-gray-300"
+                  isDarkEffective ? "[background:var(--accent)]" : "bg-gray-300"
                 }`}
               >
                 <span
                   className={`h-4 w-4 rounded-full bg-white transform transition-transform ${
-                    isDark ? "translate-x-4" : "translate-x-0"
+                    isDarkEffective ? "translate-x-4" : "translate-x-0"
                   }`}
                 />
               </span>
