@@ -217,7 +217,7 @@ const infoLinesCustom =
 
           {/* Beschreibung (voll) */}
           {dish.description && (
-            <p className="mt-2 text-[15px] leading-6  break-words hyphens-auto text-[var(--text-secondary)]">
+            <p className="mt-4 text-[15px] leading-6  break-words hyphens-auto text-[var(--text-secondary)]">
               {asText(dish.description)}
             </p>
           )}
@@ -272,7 +272,7 @@ const infoLinesCustom =
 
 
           {/* Schließen */}
-          <div className="mt-7">
+          <div className="mt-4">
             <button
               onClick={onClose}
               className="w-full h-11 rounded-xl bg-[var(--accent)] text-white font-medium active:opacity-80"

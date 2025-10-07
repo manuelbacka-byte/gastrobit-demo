@@ -391,7 +391,8 @@ const centerActiveTab = (id: string) => {
                             </span>
 
                             {hasBadges ? (
-                              <div onClick={(e) => e.stopPropagation()}>
+                              <div onClick={(e) => e.stopPropagation()}
+                              className={item.popular ? "-mt-1" : ""} >
                                 <BadgesRow badges={item.badges} size={BADGE_SIZE} gap={BADGE_GAP} withCircle={true} />
                               </div>
                             ) : (
@@ -407,22 +408,30 @@ const centerActiveTab = (id: string) => {
 
       return (
         <>
-          {/*  Beliebt/Popular Pill */}
-            {item.popular && (
-              <div className="mb-1">
-                <PopularPill label={t("popular")} />
-              </div>
-            )}
-          <div className="flex items-center justify-between mb-1">
-            <h3 className="text-base font-medium text-[var(--text-primary)]">
-              {asText(item.name)}
-            </h3>
-            {hasBadges && (
-              <div onClick={(e) => e.stopPropagation()}>
-                <BadgesRow badges={item.badges} size={BADGE_SIZE} gap={BADGE_GAP} withCircle={true} />
-              </div>
-            )}
-          </div>
+{/* Beliebt */}
+{item.popular && (
+  <div className="mb-1">  
+    <PopularPill label={t("popular")} />
+  </div>
+)}
+
+<div className="flex items-center justify-between mb-1">
+  <h3 className="text-base font-medium text-[var(--text-primary)]">
+    {asText(item.name)}
+  </h3>
+
+  {hasBadges && (
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={item.popular ? "-mt-13" : ""} 
+    >
+      <BadgesRow badges={item.badges} size={BADGE_SIZE} gap={BADGE_GAP} withCircle />
+    </div>
+  )}
+</div>
+
+
+
         </>
       );
     })()}

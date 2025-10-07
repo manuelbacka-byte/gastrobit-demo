@@ -83,14 +83,12 @@
             {
               "name": "Norma",
               "price": 16.5,
-              "popular": true,
               "description": {
                 "de": "Tomatensauce | Fior di latte | frittierte Aubergine | Ricotta Salata | Olivenöl | Basilikum",
                 "en": "Tomato sauce | Fior di latte | fried eggplant | Ricotta Salata | Olive oil | Basil"
               },
               "badges": ["vegetarisch"],
               "info": ["vegan"],
-              "Kalorien": 880,
               "extras": [
                 { "label": { "de": "Knoblauch", "en": "Garlic" }, "price": 1 },
                 { "label": { "de": "Kapern", "en": "Capers" }, "price": 1 },
@@ -164,6 +162,7 @@
               "name": "Sicilian Meatballs",
               "price": 8.5,
               "badges":["halal"],
+              "popular": true,
               "description": {
                 "de": "Hackbällchen aus Rind | Tomatensauce | Basilikum | Parmesan",
                 "en": "Beef meatballs | Tomato sauce | Basil | Parmesan"
