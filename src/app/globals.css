@@ -10,7 +10,7 @@
   --card: #ffffff;
   --card-bg: #ffffff;
 
-  --border: #d2d5db; 
+  --border: #d2d5dbe7; 
 
   --icon: #171717;
   --kreis: #f1f1f1;
@@ -31,7 +31,7 @@
     --card-bg: #181818;
 
 
-    --border: #ffffff;
+    --border: #8a8a8a;
 
     --icon: #ffffff;
     --kreis: #343434;
@@ -50,7 +50,7 @@ html[data-theme="dark"] {
   --card: #181818;
   --card-bg: #181818;
 
-  --border: #ffffff; 
+  --border: #8a8a8a; 
 
   --icon: #ffffff;
   --kreis: #343434;

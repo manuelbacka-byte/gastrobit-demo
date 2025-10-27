@@ -4,7 +4,7 @@ import { BADGE_META } from "./meta";
 
 type Props = { kind: string; size?: number; withCircle?: boolean };
 
-export default function Badge({ kind, size = 20, withCircle = false }: Props) {
+export default function Badge({ kind, size = 10, withCircle = false }: Props) {
   const meta = BADGE_META[kind];
 
   if (!meta?.src) {
@@ -44,7 +44,7 @@ const icon = (
   return (
     <span
       className="inline-flex items-center justify-center rounded-full bg-[var(--kreis)]"
-      style={{ width: size + 10, height: size + 8 }}
+      style={{ width: size + 10, height: size + 10 }}
     >
       {icon}
     </span>

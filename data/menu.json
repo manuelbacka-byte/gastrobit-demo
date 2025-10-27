@@ -21,10 +21,6 @@
                 { "label": { "de": "Champignons", "en": "Mushrooms" }, "price": 2 },
                 { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
                 { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
-                { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
-                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
-                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
-                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
                 { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
                 { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
               ],
@@ -47,10 +43,6 @@
                 { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
                 { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
                 { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
-                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
-                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
-                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
-                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
                 { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
               ],
               "allergene": ["nuesse", "gluten"]
@@ -72,10 +64,6 @@
                 { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
                 { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
                 { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
-                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
-                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
-                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
-                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
                 { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
               ],
               "allergene": ["laktose", "gluten"]
@@ -97,10 +85,6 @@
                 { "label": { "de": "Rucola", "en": "Arugula" }, "price": 2 },
                 { "label": { "de": "Oliven", "en": "Olives" }, "price": 2 },
                 { "label": { "de": "getr. Tomaten", "en": "Sun-dried tomatoes" }, "price": 2 },
-                { "label": { "de": "Aubergine", "en": "Eggplant" }, "price": 3 },
-                { "label": { "de": "Veganer Käse", "en": "Vegan cheese" }, "price": 3 },
-                { "label": { "de": "Tunafilet", "en": "Tuna fillet" }, "price": 4.5 },
-                { "label": { "de": "Grillgemüse", "en": "Grilled vegetables" }, "price": 4.5 },
                 { "label": { "de": "Büffelmozzarella", "en": "Buffalo mozzarella" }, "price": 4.5 }
               ],
               "allergene": ["laktose", "gluten"]
@@ -190,7 +174,9 @@
           "icon": "wein",
           "items": [
             { "name": {"de": "Glas Pinot Grigio", "en": "Glass Pinot Grigio"}, "price": 6.5 },
-            { "name": {"de": "Glas Hauswein Rot", "en": "Glass Hauswein red"}, "price": 6.5 }
+            { "name": {"de": "Glas Hauswein Rot", "en": "Glass Housewine red"}, "price": 6.5 },
+            { "name": {"de": "Flasche Hauswein Rot 0,7", "en": "Bottle Housewine red 0,7"}, "price": 6.5},
+            { "name": {"de": "Flasche Pinot Grigio 0,7", "en": "Bottle Pinot Grigio 0,7"}, "price": 6.5 }
           ]
         },
         {
@@ -199,7 +185,8 @@
           "icon": "alkohol",
           "items": [
             { "name": "Alsterwasser 0,5", "price": 5 },
-            { "name": "Pils 0,5", "price": 5 }
+            { "name": "Chiemseer Pils 0,5", "price": 5 },
+            { "name": "Chiemseer Pils 0,3", "price": 3.5 }
           ]
         }
       ]

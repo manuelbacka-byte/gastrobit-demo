@@ -10,8 +10,8 @@ function orderIndex(key: string) {
 
 export default function BadgesRow({
   badges,
-  size = 16,           
-  gap = 8,
+  size = 12,           
+  gap = 6,
   withCircle = true,  
 }: {
   badges?: string[];

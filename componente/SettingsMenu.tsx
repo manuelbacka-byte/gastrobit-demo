@@ -103,8 +103,8 @@ export default function SettingsMenu({ iconSrc = "/icons/settings.svg" }: { icon
         aria-expanded={open}
         className="inline-flex items-center justify-center rounded-md border"
         style={{
-          height: 28,
-          width: 28,
+          height: 30,
+          width: 30,
           background: "var(--card)",
           borderColor: "var(--border)",
           color: "var(--text-primary)",

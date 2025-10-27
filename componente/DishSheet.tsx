@@ -3,6 +3,8 @@ import { useEffect, useRef } from "react";
 import type { Dish } from "./MenuView";
 import { BADGE_META } from "./badges/meta"; 
 import { useI18n } from "./i18n/I18nProvider";
+import { motion, useMotionValue, animate, useDragControls, PanInfo } from "framer-motion";
+
 
 type Props = {
   dish: Dish | null;
@@ -81,6 +83,41 @@ export default function DishSheet({ dish, open, onClose }: Props) {
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
+  // --- Drag / Swipe-to-close ---
+const y = useMotionValue(0);
+const dragControls = useDragControls();
+
+// Schwellen (gerne anpassen)
+const CLOSE_OFFSET = 120;    // wie weit nach unten ziehen (px)
+const CLOSE_VELOCITY = 800;  // oder schnell genug wischen (px/s)
+
+// Beim Öffnen auf y=0 federn
+useEffect(() => {
+  if (open) {
+    animate(y, 0, { type: "spring", stiffness: 500, damping: 40 });
+  }
+}, [open, y]);
+
+// Entscheidung beim Loslassen
+function handleDragEnd(
+  _evt: PointerEvent | MouseEvent | TouchEvent,
+  info: PanInfo
+) {
+  const offsetY = info?.offset?.y ?? 0;
+  const vy = info?.velocity?.y ?? 0;
+
+  // Schließen, wenn weit genug gezogen ODER schnell genug gewischt
+  if (offsetY > CLOSE_OFFSET || vy > CLOSE_VELOCITY) {
+    animate(y, window.innerHeight, { duration: 0.2 });
+    // Warten, bis die Weg-Animation sichtbar war, dann state in der Parent schließen
+    setTimeout(onClose, 160);
+  } else {
+    // Zurück auf Ausgangsposition federn
+    animate(y, 0, { type: "spring", stiffness: 500, damping: 40 });
+  }
+}
+
+
   // ESC schließt das Sheet
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -98,35 +135,39 @@ useEffect(() => {
   });
 }, [open, dish]);
 
+// Body scroll sperren, wenn das Sheet offen ist
 useEffect(() => {
-  if (!open) return;
-
-  const scrollY = window.scrollY;
-
-  // Body fixieren OHNE dass er nach oben springt
-  document.body.style.overflow = "hidden"; // verhindert Scrollen
-  document.body.style.position = "relative"; // kein fixed, kein Jump
-  document.body.setAttribute("data-sheet-open", "true");
-
-  return () => {
-    document.body.style.overflow = "";
+  if (open) {
+    const scrollY = window.scrollY;
+    // body fixieren
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+  } else {
+    // beim Schließen die alte Position wiederherstellen
+    const scrollY = document.body.style.top;
     document.body.style.position = "";
-    document.body.removeAttribute("data-sheet-open");
-
-    // sicherstellen, dass die Scroll-Pos bleibt
-    window.scrollTo({ top: scrollY, behavior: "auto" });
-  };
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    if (scrollY) window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  }
 }, [open]);
+
 
 
   if (!dish) return null;
   
   // Animation-Klassen (weich von unten)
-  const sheetCls = [
-    "fixed inset-x-0 bottom-0 z-[60] bg-[var(--card-bg)] rounded-t-2xl shadow-xl",
-    "will-change-transform transition-transform duration-300 ease-out",
-    open ? "translate-y-0" : "translate-y-full",
-  ].join(" ");
+const sheetCls = [
+  "fixed inset-x-0 bottom-0 z-[60] bg-[var(--card-bg)] rounded-t-2xl shadow-xl"
+].join(" ");
+
 
   const overlayCls = [
     "fixed inset-0 z-50 bg-black/40 transition-opacity duration-300",
@@ -185,23 +226,38 @@ const infoLinesCustom =
         onClick={onClose}
       />
 
-      {/* Panel */}
-      <div
-        role="dialog"
-        aria-modal="true"
-        className={sheetCls}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Griff */}
-        <div className="flex justify-center pt-3">
-          <div className="h-1.5 w-10 rounded-full bg-[var(--border)]" />
-        </div>
+{/* Panel */}
+<motion.div
+  role="dialog"
+  aria-modal="true"
+  className={sheetCls}
+  onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+  /* motion */
+  style={{ y }}
+  initial={{ y: "100%" }}
+  animate={{ y: open ? 0 : "100%" }}           
+  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+  drag="y"
+  dragControls={dragControls}
+  dragListener={true}                                
+  dragElastic={0.35}
+  dragMomentum={true}
+  dragConstraints={{ top: 0, bottom: 0 }}
+  onDragEnd={handleDragEnd}
+>
+  {/* Griff – startet das Drag */}
+  <div
+    className="flex justify-center pt-3 cursor-grab active:cursor-grabbing"
+    onPointerDown={(e) => dragControls.start(e)}
+  >
+    <div className="h-1.5 w-10 rounded-full bg-[var(--border)]" />
+  </div>
 
-    <main
-        ref={contentRef}
-        className="max-w-screen-md mx-auto px-5 pb-8 pt-4 max-h-[65vh] overflow-y-auto font-sans antialiased tracking-normal"
+  <main
+    ref={contentRef}
+    className="max-w-screen-md mx-auto px-5 pb-8 pt-4 max-h-[50vh] overflow-y-auto font-sans antialiased tracking-normal"
     style={{ WebkitOverflowScrolling: "touch" }}
-    >
+  >
           {/* Kopf: Name + Preis */}
           <div className="flex items-start justify-between gap-4">
             <div>
@@ -269,19 +325,17 @@ const infoLinesCustom =
                 </div>
             </div>
             )}
-
-
-          {/* Schließen */}
-          <div className="mt-4">
-            <button
-              onClick={onClose}
-              className="w-full h-11 rounded-xl bg-[var(--accent)] text-white font-medium active:opacity-80"
-            >
-              {t("close")}
-            </button>
-          </div>
-        </main>
-      </div>
+    {/* Schließen */}
+    <div className="mt-4">
+      <button
+        onClick={onClose}
+        className="w-full h-11 rounded-xl bg-[var(--accent)] text-white font-medium active:opacity-80"
+      >
+        {t("close")}
+      </button>
+    </div>
+  </main>
+</motion.div>
     </>
   );
 }
