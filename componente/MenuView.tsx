@@ -129,7 +129,7 @@ const computeNearEnd = useCallback((activeId: string) => {
   let remaining = 0;
   for (let i = idx; i < categories.length; i++) {
     const btn = tabBtnRefs.current[categories[i].id];
-    if (!btn) continue;s
+    if (!btn) continue;
     remaining += btn.offsetWidth;
     if (i > idx) remaining += GAP_PX;
   }
